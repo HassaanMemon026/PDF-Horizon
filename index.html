@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="static/css/style.css">
+
+  <title>PDF Tools</title>
+
+  <!-- PDF.js Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-primary sticky-top">
+    <a class="navbar-brand text-white" href="/">PDFX</a>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a target="_blank" href="https://github.com/hassaanMemon026/">About</a></li>
+    </ul>
+  </nav>
+
+  <div class="container mt-5">
+    <div class="text-center">
+      <h1 class="display-4 text-primary">Welcome to PDFX</h1>
+      <p class="lead text-secondary">Your go-to PDF merger tool</p>
+    </div>
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-12">
+        <div class="card shadow-lg border-0">
+          <div class="card-body">
+            <h5 class="card-title text-center mb-4">Merge PDF Files</h5>
+            <form method="POST" action="/merge" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="pdfFiles">Select PDF files to merge</label>
+                <input type="file" name="pdfs" class="form-control-file" id="pdfFiles" multiple accept="application/pdf"
+                  onchange="displaySelectedFiles()">
+              </div>
+              <div id="selectedFilesContainer" class="selected-files-container">
+                <p id="noFileSelectedText" class="text-center text-muted">No file selected</p>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block mt-4">Merge PDFs</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-light text-dark text-center py-3 mt-5">
+    <p>&copy; 2024 PDFX. Crafted with care by <a href="https://github.com/hassaanMemon026/">me</a>.</p>
+  </footer>
+
+  <!-- Custom JavaScript for displaying selected files -->
+  <script>
+    async function displaySelectedFiles() {
+      const files = document.getElementById('pdfFiles').files;
+      const container = document.getElementById('selectedFilesContainer');
+      const noFileText = document.getElementById('noFileSelectedText');
+
+      container.innerHTML = ''; // Clear the container
+      if (files.length === 0) {
+        noFileText.style.display = 'block';
+        return;
+      } else {
+        noFileText.style.display = 'none';
+      }
+
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const fileDiv = document.createElement('div');
+        fileDiv.classList.add('file-item');
+
+        const canvas = document.createElement('canvas');
+        fileDiv.appendChild(canvas);
+
+        const detailsDiv = document.createElement('div');
+        detailsDiv.classList.add('file-details');
+        fileDiv.appendChild(detailsDiv);
+
+        container.appendChild(fileDiv);
+
+
+        const fileReader = new FileReader();
+        fileReader.onload = function (event) {
+          const pdfData = new Uint8Array(event.target.result);
+          const loadingTask = pdfjsLib.getDocument({ data: pdfData });
+
+          loadingTask.promise.then(function (pdf) {
+            pdf.getPage(1).then(function (page) {
+              const viewport = page.getViewport({ scale: 0.5 }); // Adjust scale for larger thumbnail
+              const context = canvas.getContext('2d');
+              canvas.height = viewport.height;
+              canvas.width = viewport.width;
+
+              const renderContext = {
+                canvasContext: context,
+                viewport: viewport
+              };
+              page.render(renderContext);
+
+              // Add details below the canvas
+              detailsDiv.innerHTML = `<p>${file.name}</p><p>${pdf.numPages} pages</p>`;
+            });
+          }).catch(function (error) {
+            console.error("Error loading PDF:", error);
+          });
+        };
+        fileReader.readAsArrayBuffer(file);
+      }
+
+    }
+  </script>
+</body>
+
+</html>
