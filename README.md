@@ -1,100 +1,42 @@
 
-# 🌟 PDFX — PDF Merger Tool
+<h1 align="center">📄 PDF Horizon</h1>
+<p align="center">Your all-in-one PDF companion for conversion, merging, splitting, and more!</p>
 
-![License](https://img.shields.io/badge/license-MIT-green)
-![Built With](https://img.shields.io/badge/Built%20With-Node.js-blue)
-![Status](https://img.shields.io/badge/status-Active-brightgreen)
-
-> ✨ **A beautiful, lightweight, and simple PDF merging tool built with Node.js, Express, and pdf-merger-js.**
+<div align="center">
+  <img src="https://img.shields.io/badge/PDF%20Tools-Available-blue" alt="PDF Tools Badge" />
+  <img src="https://img.shields.io/badge/Made%20with-❤️-red" alt="Made with Love Badge" />
+</div>
 
 ---
 
 ## 🚀 Features
-
-✅ Upload up to **15 PDFs** at once  
-✅ Merge PDFs seamlessly on the server  
-✅ Beautiful Bootstrap-styled interface  
-✅ Live **thumbnail previews** of selected PDFs  
-✅ Downloads merged file instantly from the server  
-✅ Pure **JavaScript + Express** backend
-
----
+✨ Convert PDFs to Word, Excel, and Images  
+✨ Split large PDFs into smaller files  
+✨ Add watermark or password protection  
+✨ User-friendly UI with responsive design  
+✨ Smooth animations & interactive components
 
 ## 🛠️ Tech Stack
+- Node.JS
+- Express.JS
+- CSS (Bootstrap) ⭐
 
-- **Backend:** Node.js, Express.js, multer
-- **Frontend:** HTML, CSS (Bootstrap), JavaScript
-- **PDF Handling:** pdf-merger-js
+## 📸 Screenshots
+![Demo](public/ss.png)
 
----
-
-## ⚙️ How to Run
-
-1️⃣ Clone this repo:
+## 📦 Setup
 ```bash
-git clone https://github.com/hassaanMemon026/pdfx.git
-```
-
-2️⃣ Install dependencies:
-```bash
+git clone https://github.com/HassaanMemon026/PDF-Horizon.git
+cd PDF-Horizon
 npm install
-```
-
-3️⃣ Run the server:
-```bash
-npm start
-```
-Or manually:
-```bash
 node server.js
 ```
 
-4️⃣ Open in browser:
-```
-http://localhost:3000
-```
+## 💡 Inspiration
+Designed to simplify all your PDF needs in one modern, stylish app.
 
----
-
-## 📂 Project Structure
-
-```
-📦 root
- ┣ 📂 public
- ┣ 📂 uploads
- ┣ 📄 index.html
- ┣ 📄 server.js
- ┣ 📄 merge.js
- ┣ 📄 style.css
- ┗ 📄 README.md
-```
-
----
-
-## 📸 Screenshots
-
-![Preview](https://via.placeholder.com/600x300.png?text=PDFX+Preview)
-
----
-
-## 💡 Future Enhancements
-
-✨ Add drag-and-drop file upload  
-✨ Add page rearrange and delete options  
-✨ Export as single PDF or separate files
-
----
-
-## 🧑‍💻 Author
-
-- **Muhammad Hassaan** → [GitHub](https://github.com/hassaanMemon026)
-
----
+## 🤝 Contributing
+Feel free to fork and submit pull requests!
 
 ## 📄 License
-
-This project is licensed under the **MIT License**.
-
----
-
-### 🌈 _Thank you for using PDFX!_ 🚀
+This project is licensed under the MIT License.
