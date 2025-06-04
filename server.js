@@ -10,6 +10,15 @@ const __dirname = path.dirname(__filename);
 
 import { mergePdfs } from './merge.js';
 
+function hostname() {
+  if (process.env.RAILWAY_PUBLIC_DOMAIN) {
+    return `https://${process.env.RAILWAY_PUBLIC_DOMAIN}`;
+  } else {
+    return 'http://localhost:3000';
+  }
+}
+
+
 const app = express();
 const upload = multer({ dest: 'uploads/' });
 const port = 3000;
@@ -26,7 +35,7 @@ app.post('/merge', upload.array('pdfs', 15), async (req, res) => {
     
     let d = await mergePdfs(...files);
     
-    res.redirect(`http://localhost:3000/static/${d}.pdf`);
+    res.redirect(`${hostname()}/static/${d}.pdf`);
   } catch (error) {
     console.error('Error merging PDFs:', error); 
     res.status(500).send('Error merging PDFs');
