@@ -8,7 +8,7 @@
 </div>
 
 ---
-👉 **Live Demo (if deployed):**  
+👉🌐 **Live Demo (if deployed):**  
 [Visit PDF-Horizon Live](https://pdf-horizon-production.up.railway.app/)  
 
 
